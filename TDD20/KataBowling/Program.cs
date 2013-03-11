@@ -16,7 +16,18 @@ namespace KataBowling
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI());
+
+            var ui = new UI();
+            var frames = new Frames();
+            var map = new Mappings();
+            var integration = new Integration(frames);
+
+            integration.Start(game => {
+                var vm = map.Map(game);
+                ui.Display(vm);
+            });
+
+            Application.Run(ui);
         }
     }
 }

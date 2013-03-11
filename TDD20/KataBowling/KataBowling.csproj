@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frame.cs" />
+    <Compile Include="Frames.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Integration.cs" />
+    <Compile Include="Mappings.cs" />
+    <Compile Include="tests\test_Mappings.cs" />
     <Compile Include="tests\test_UI.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>
