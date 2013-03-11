@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taschenrechner", "Taschenre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDdemo", "TDDdemo\TDDdemo.csproj", "{C1F67C20-6A41-4772-AC01-BC5C7D3D3A52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataBowling", "KataBowling\KataBowling.csproj", "{74946591-36B0-4B50-955D-F32D5D0339FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{C1F67C20-6A41-4772-AC01-BC5C7D3D3A52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C1F67C20-6A41-4772-AC01-BC5C7D3D3A52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C1F67C20-6A41-4772-AC01-BC5C7D3D3A52}.Release|x86.ActiveCfg = Release|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{74946591-36B0-4B50-955D-F32D5D0339FF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
