@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KataBowling.data;
+using KataBowling.operations;
 using NUnit.Framework;
 using equalidator;
 
@@ -15,7 +17,7 @@ namespace KataBowling.tests
         [Test]
         public void Pass_through_score()
         {
-            var game = new Game{Score = 42};
+            var game = new Game{Score = 42, Frames = new[]{new Frame()}};
 
             var sut = new Mappings();
             var result = sut.Map(game);
@@ -31,11 +33,12 @@ namespace KataBowling.tests
             {
                 Frames = new List<Frame>
                 {
-                    new Frame{Roll1 = 6, Roll2 = 0},
-                    new Frame{Roll1 = 0, Roll2 = 0, Score = 0},
-                    new Frame{Roll1 = 10, Roll2 = 0, Score = 99},
-                    new Frame{Roll1 = 5, Roll2 = 5, Score = 88},
-                    new Frame{Roll1 = 3, Roll2 = 6, Score = 77}
+                    new Frame{Roll1 = 10, Score = 20}, // strike
+                    new Frame{Roll1 = 5, Roll2 = 5, Score = 13}, // spare
+                    new Frame{Roll1 = 3, Roll2 = 6, Score = 9}, // 2 rolls
+                    new Frame{Roll1 = 3}, // 1 roll
+                    new Frame{}, // no rolls yet
+                    new Frame{Roll1 = 10, Roll2 = 10} // 2 strikes in final frame
                 }
             };
 
@@ -43,30 +46,35 @@ namespace KataBowling.tests
             var result = sut.Map(game);
 
             var lvframes = new List<ListViewItem>();
-            var lvi = new ListViewItem("1");
+            var lvi = new ListViewItem("6");
+            lvi.SubItems.Add("X");
+            lvi.SubItems.Add("X");
+            lvi.SubItems.Add("");
+            lvframes.Add(lvi); 
+            lvi = new ListViewItem("5");
+            lvi.SubItems.Add("");
+            lvi.SubItems.Add("");
+            lvi.SubItems.Add("");
+            lvframes.Add(lvi);
+            lvi = new ListViewItem("4");
+            lvi.SubItems.Add("3");
+            lvi.SubItems.Add("");
+            lvi.SubItems.Add("");
+            lvframes.Add(lvi);
+            lvi = new ListViewItem("3");
             lvi.SubItems.Add("3");
             lvi.SubItems.Add("6");
-            lvi.SubItems.Add("77");
+            lvi.SubItems.Add("9");
             lvframes.Add(lvi);
             lvi = new ListViewItem("2");
             lvi.SubItems.Add("5");
             lvi.SubItems.Add("/");
-            lvi.SubItems.Add("88");
+            lvi.SubItems.Add("13");
             lvframes.Add(lvi);
-            lvi = new ListViewItem("3");
+            lvi = new ListViewItem("1");
             lvi.SubItems.Add("X");
             lvi.SubItems.Add("");
-            lvi.SubItems.Add("99");
-            lvframes.Add(lvi);
-            lvi = new ListViewItem("4");
-            lvi.SubItems.Add("");
-            lvi.SubItems.Add("");
-            lvi.SubItems.Add("");
-            lvframes.Add(lvi);
-            lvi = new ListViewItem("5");
-            lvi.SubItems.Add("6");
-            lvi.SubItems.Add("");
-            lvi.SubItems.Add("");
+            lvi.SubItems.Add("20");
             lvframes.Add(lvi);
 
             Equalidator.AreEqual(result.Frames, lvframes, true);

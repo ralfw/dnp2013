@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KataBowling
+namespace KataBowling.data
 {
     struct Game
     {
