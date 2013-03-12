@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KataBowling.data;
 
@@ -6,64 +7,83 @@ namespace KataBowling.operations
 {
     class Frames
     {
-        private List<Frame> _frames; 
+        private List<int> _rolls; 
 
-        public Frames() : this(new List<Frame>()) {}
-        internal Frames(List<Frame> frames)
+
+        public Frames()
         {
-            _frames = frames;
+            Clear();
         }
 
 
         public Game Clear()
         {
-            return new Game {Frames = new Frame[0], Score = 0};
+            _rolls = new List<int>();
+            return new Game { Frames = new[]{new Frame()}, Score = 0 };
         }
 
 
-        public Game Extend_game(Game game)
+        public IEnumerable<int> Register_roll(int pins)
         {
-            _frames = new List<Frame>(game.Frames) {new Frame()};
-            return new Game {Frames = Extend_frames(game.Frames), Score = game.Score};
+            _rolls.Add(pins);
+            return _rolls;
+        } 
+
+
+        public IEnumerable<Frame> Frame_rolls(IEnumerable<int> rolls)
+        {
+            var frames = new List<Frame>();
+
+            var frame = new Frame();
+            foreach (var roll in rolls)
+            {
+                if (frame.Roll1.HasValue)
+                {
+                    frame.Roll2 = roll;
+                    frames.Add(frame);
+                    frame = new Frame();
+                }
+                else
+                {
+                    frame.Roll1 = roll;
+                    if (roll == 10)
+                    {
+                        frames.Add(frame);
+                        frame = new Frame();
+                    }
+                }
+            }
+            if (frame.Roll1.HasValue) frames.Add(frame);
+
+            return frames;
         }
 
 
-        internal static IEnumerable<Frame> Extend_frames(IEnumerable<Frame> frames)
+        public IEnumerable<Frame> Mixin_scores(IEnumerable<Frame> frames, IEnumerable<int> scores)
         {
-            var result = new List<Frame>(frames);
-            if (result.Count < 10)
-                result.Add(new Frame());
-            else if (result.Count() == 10)
-                    if (Strike_in_10th_frame(result))
-                        result.Add(new Frame());
-                    else if (Spare_in_10th_frame(result))
-                        result.Add(new Frame());
-            return result;
-        }
+            return frames.Zip(scores, (f, s) => {
+                                                    f.Score = s;
+                                                    return f;
+                                                });  
+        } 
 
-        private static bool Strike_in_10th_frame(List<Frame> result)
+
+        public bool Check_for_end_of_game(Game game)
         {
-            return result.Last().Roll1.HasValue &&
-                   result.Last().Roll1 == 10;
-        }
+            var frames = game.Frames.ToArray();
 
-        private static bool Spare_in_10th_frame(List<Frame> result)
-        {
-            return result.Last().Roll1.HasValue && result.Last().Roll2.HasValue &&
-                   result.Last().Roll1 + result.Last().Roll2 == 10;
-        }
+            if (frames.Count() == 10 &&
+                frames[9].Roll2.HasValue &&
+                frames[9].Score < 10) return true;
 
+            if (frames.Count() == 11 &&
+                frames[10].Roll1.HasValue) return true;
 
-        public IEnumerable<Frame> RegisterRoll(int pins)
-        {
-            var frame = _frames.Last();
+            if (frames.Count() == 11 &&
+                frames[9].Roll1 == 10 &&
+                frames[10].Roll1.HasValue && frames[10].Roll2.HasValue) return true;
 
-            if (frame.Roll1.HasValue)
-                frame.Roll2 = pins;
-            else
-                frame.Roll1 = pins;
-
-            return _frames;
+            return false;
         }
     }
 }

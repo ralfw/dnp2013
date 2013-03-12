@@ -14,77 +14,133 @@ namespace KataBowling.tests
     public class test_Frames
     {
         [Test]
-        public void Register_first_roll_in_frame()
+        public void Mixin_scores()
         {
-            var sut = new Frames(new List<Frame>{new Frame()});
+            var frames = new[] { new Frame {Roll1 = 1, Roll2 = 2}, 
+                                 new Frame {Roll1 = 11, Roll2 = 12}};
+            var scores = new int[] {100, 200};
 
-            var result = sut.RegisterRoll(4);
+            var sut = new Frames();
+            var result = sut.Mixin_scores(frames, scores);
 
-            Equalidator.AreEqual(result.First(), new Frame{Roll1=4});
+            Equalidator.AreEqual(result, 
+                                    new[] { new Frame { Roll1 = 1, Roll2 = 2, Score=100 }, 
+                                            new Frame { Roll1 = 11, Roll2 = 12, Score=200 } },
+                                    true);
         }
 
 
         [Test]
-        public void Register_second_roll_in_frame()
-        {
-            var sut = new Frames(new List<Frame> {new Frame {Roll1 = 4}});
-
-            var result = sut.RegisterRoll(3);
-
-            Equalidator.AreEqual(result.First(), new Frame{Roll1=4, Roll2=3});
-        }
-
-
-        [Test]
-        public void Extend_game_while_less_than_10_frames()
+        public void No_end_of_game_with_less_than_10_frames()
         {
             var frames = new List<Frame>();
-            for(var i=1; i<10; i++)
+            for(var i=1;i<10;i++)
                 frames.Add(new Frame());
 
-            var result = Frames.Extend_frames(frames);
+            var result = new Frames().Check_for_end_of_game(new Game{Frames=frames});
 
-            Assert.AreEqual(frames.Count+1, result.Count());
+            Assert.IsFalse(result);
         }
 
         [Test]
-        public void Extend_game_for_spare_in_10th_frame()
+        public void End_of_game_if_10th_frame_is_regular()
         {
             var frames = new List<Frame>();
             for (var i = 1; i < 10; i++)
                 frames.Add(new Frame());
-            frames.Add(new Frame{Roll1=6, Roll2=4, Score=null});
+            frames.Add(new Frame { Roll1=3, Roll2=6, Score=9 });
 
-            var result = Frames.Extend_frames(frames);
+            var result = new Frames().Check_for_end_of_game(new Game { Frames = frames });
 
-            Assert.AreEqual(11, result.Count());
+            Assert.IsTrue(result);   
         }
 
         [Test]
-        public void Extend_game_for_strike_in_10th_frame()
+        public void No_end_of_game_if_10th_frame_is_incomplete()
         {
             var frames = new List<Frame>();
             for (var i = 1; i < 10; i++)
                 frames.Add(new Frame());
-            frames.Add(new Frame { Roll1 =10, Roll2 = null, Score = null });
+            frames.Add(new Frame { Roll1 = 3, Score = 3 });
 
-            var result = Frames.Extend_frames(frames);
+            var result = new Frames().Check_for_end_of_game(new Game { Frames = frames });
 
-            Assert.AreEqual(11, result.Count());
+            Assert.IsFalse(result);   
         }
 
 
         [Test]
-        public void No_extension_if_10th_frame_scores_less_than_10()
+        public void End_of_game_if_spare_followed_by_one_more_roll()
         {
             var frames = new List<Frame>();
             for (var i = 1; i < 10; i++)
                 frames.Add(new Frame());
-            frames.Add(new Frame { Roll1 = 3, Roll2 = 6, Score = 9 });
+            frames.Add(new Frame { Roll1 = 4, Roll2 = 6, Score = 13});
+            frames.Add(new Frame { Roll1 = 3 });
 
-            var result = Frames.Extend_frames(frames);
+            var result = new Frames().Check_for_end_of_game(new Game { Frames = frames });
 
-            Assert.AreEqual(10, result.Count());
+            Assert.IsTrue(result); 
+        }
+
+        [Test]
+        public void End_of_game_if_strike_followed_by_two_more_rolls()
+        {
+            var frames = new List<Frame>();
+            for (var i = 1; i < 10; i++)
+                frames.Add(new Frame());
+            frames.Add(new Frame { Roll1 = 10, Score = 18 });
+            frames.Add(new Frame { Roll1 = 3, Roll2 = 5});
+
+            var result = new Frames().Check_for_end_of_game(new Game { Frames = frames });
+
+            Assert.IsTrue(result);
+        }
+
+
+        [Test]
+        public void Single_roll_in_frame()
+        {
+            var rolls = new[] {1};
+
+            var result = new Frames().Frame_rolls(rolls);
+
+            Equalidator.AreEqual(result, new[]{new Frame{Roll1=1}}, true);
+        }
+
+
+        [Test]
+        public void Two_rolls_in_frame()
+        {
+            var rolls = new[] { 1, 2 };
+
+            var result = new Frames().Frame_rolls(rolls);
+
+            Equalidator.AreEqual(result, new[] { new Frame { Roll1 = 1, Roll2 = 2 } }, true);
+        }
+
+        [Test]
+        public void Two_frames()
+        {
+            var rolls = new[] { 1, 2, 3 };
+
+            var result = new Frames().Frame_rolls(rolls);
+
+            Equalidator.AreEqual(result, new[] { new Frame { Roll1 = 1, Roll2 = 2 }, 
+                                                    new Frame{Roll1=3} }, 
+                                    true);
+        }
+
+        [Test]
+        public void Strike_frame()
+        {
+            var rolls = new[] { 10, 2, 3 };
+
+            var result = new Frames().Frame_rolls(rolls);
+
+            Equalidator.AreEqual(result, new[] { new Frame { Roll1 = 10 }, 
+                                            new Frame{ Roll1 = 2, Roll2 = 3} },
+                                    true);
         }
     }
 }

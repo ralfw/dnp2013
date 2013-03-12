@@ -6,5 +6,6 @@ namespace KataBowling.data
     {
         public IEnumerable<Frame> Frames;
         public int Score;
+        public bool Finished;
     }
 }

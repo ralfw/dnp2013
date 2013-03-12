@@ -20,13 +20,16 @@ namespace KataBowling
 
             var ui = new UI();
             var frames = new Frames();
+            var scorer = new Scorer();
             var map = new Mappings();
-            var integration = new Integration(frames);
+            var integration = new Integration(frames, scorer);
 
-            integration.Start(game => {
-                var vm = map.Map(game);
-                ui.Display(vm);
-            });
+            ui.On_Clear += integration.New_game;
+            ui.On_Pins += integration.Throw;
+            integration.Result += map.Map;
+            map.Result += ui.Display;
+
+            integration.Start();
 
             Application.Run(ui);
         }

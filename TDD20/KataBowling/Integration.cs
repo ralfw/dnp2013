@@ -11,17 +11,49 @@ namespace KataBowling
     class Integration
     {
         private readonly Frames _frames;
+        private readonly Scorer _scorer;
 
-        public Integration(Frames frames)
+        public Integration(Frames frames, Scorer scorer)
         {
             _frames = frames;
+            _scorer = scorer;
         }
 
 
-        public void Start(Action<Game> continueWith)
+        public void Start()
+        {
+            New_game();
+        }
+
+
+        public void New_game()
         {
             var game = _frames.Clear();
-            continueWith(_frames.Extend_game(game));
+            Result(game);
         }
+
+
+        public void Throw(int pinsRolled)
+        {
+            var rolls = _frames.Register_roll(pinsRolled);
+
+            var frames = _frames.Frame_rolls(rolls);
+            var scores = _scorer.Score_rolls(rolls.ToArray());
+
+            frames = _frames.Mixin_scores(frames, scores);
+
+            var game = new Game
+                {
+                    Frames = frames,
+                    Score = _scorer.Calc_total(frames)
+                };
+
+            game.Finished = _frames.Check_for_end_of_game(game);
+
+            Result(game);
+        }
+
+
+        public event Action<Game> Result;
     }
 }

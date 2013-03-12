@@ -20,7 +20,9 @@ namespace KataBowling.tests
             var game = new Game{Score = 42, Frames = new[]{new Frame()}};
 
             var sut = new Mappings();
-            var result = sut.Map(game);
+            var result = new ViewModel();
+            sut.Result += _ => result = _;
+            sut.Map(game);
 
             Assert.AreEqual(42, result.GameScore);
         }
@@ -43,7 +45,9 @@ namespace KataBowling.tests
             };
 
             var sut = new Mappings();
-            var result = sut.Map(game);
+            var result = new ViewModel();
+            sut.Result += _ => result = _;
+            sut.Map(game);
 
             var lvframes = new List<ListViewItem>();
             var lvi = new ListViewItem("6");
@@ -78,24 +82,6 @@ namespace KataBowling.tests
             lvframes.Add(lvi);
 
             Equalidator.AreEqual(result.Frames, lvframes, true);
-        }
-
-
-        [Test]
-        public void Check_game_finished()
-        {
-            var game = new Game
-            {
-                Frames = new List<Frame>
-                {
-                    new Frame{Score = 77}
-                }
-            };
-
-            var sut = new Mappings();
-            var result = sut.Map(game);
-
-            Assert.IsTrue(result.GameFinished);
         }
     }
 }

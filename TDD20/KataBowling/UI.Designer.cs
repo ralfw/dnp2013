@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "3",
             "4",
@@ -54,10 +54,10 @@
             this.columnHeader3,
             this.columnHeader4});
             this.lvFrames.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6});
+            listViewItem1});
             this.lvFrames.Location = new System.Drawing.Point(14, 30);
             this.lvFrames.Name = "lvFrames";
-            this.lvFrames.Size = new System.Drawing.Size(176, 217);
+            this.lvFrames.Size = new System.Drawing.Size(176, 232);
             this.lvFrames.TabIndex = 0;
             this.lvFrames.UseCompatibleStateImageBehavior = false;
             this.lvFrames.View = System.Windows.Forms.View.Details;
@@ -96,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 258);
+            this.label1.Location = new System.Drawing.Point(13, 273);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 3;
@@ -104,7 +104,7 @@
             // 
             // txtPinsRolled
             // 
-            this.txtPinsRolled.Location = new System.Drawing.Point(71, 255);
+            this.txtPinsRolled.Location = new System.Drawing.Point(70, 270);
             this.txtPinsRolled.Name = "txtPinsRolled";
             this.txtPinsRolled.Size = new System.Drawing.Size(41, 20);
             this.txtPinsRolled.TabIndex = 4;
@@ -112,7 +112,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(134, 253);
+            this.btnSubmit.Location = new System.Drawing.Point(133, 268);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(57, 23);
             this.btnSubmit.TabIndex = 5;
@@ -122,7 +122,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(134, 277);
+            this.btnClear.Location = new System.Drawing.Point(133, 292);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(57, 23);
             this.btnClear.TabIndex = 6;
@@ -146,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(208, 309);
+            this.ClientSize = new System.Drawing.Size(208, 327);
             this.Controls.Add(this.lblGameScore);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSubmit);

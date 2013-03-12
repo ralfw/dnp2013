@@ -1,6 +1,6 @@
 ﻿namespace KataBowling.data
 {
-    public class Frame
+    public struct Frame
     {
         public int? Roll1;
         public int? Roll2;

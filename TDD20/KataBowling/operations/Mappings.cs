@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using KataBowling.data;
@@ -7,11 +8,11 @@ namespace KataBowling.operations
 {
     class Mappings
     {
-        public ViewModel Map(Game game)
+        public void Map(Game game)
         {
             var vm = new ViewModel {
                                         GameScore = game.Score,
-                                        GameFinished = game.Frames.Last().Score.HasValue
+                                        GameFinished = game.Finished
                                    };
 
             var vmFrames = new List<ListViewItem>();
@@ -28,7 +29,9 @@ namespace KataBowling.operations
             }
             vm.Frames = vmFrames;
 
-            return vm;
+            Result(vm);
         }
+
+        public event Action<ViewModel> Result;
     }
 }
