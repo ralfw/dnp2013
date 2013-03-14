@@ -23,7 +23,7 @@ namespace KataBowling.tests
                 };
 
             var sut = new Scorer();
-            var result = sut.Calc_total(frames);
+            var result = sut.Calc_total_score(frames);
 
             Assert.AreEqual(3, result);
         }
@@ -38,7 +38,19 @@ namespace KataBowling.tests
         [TestCase(new[] { 10 }, Result = new[] { 10 })]
         public int[] Score_regular_frame(int[] rolls)
         {
-            return new Scorer().Score_rolls(rolls).ToArray();
+            return new Scorer().Calc_frame_scores(rolls).ToArray();
+        }
+
+
+        [Test]
+        public void No_score_for_frame_11()
+        {
+            var sut = new Scorer();
+
+            var result = sut.Calc_frame_scores(new[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 });
+
+            Assert.AreEqual(11, result.Count());
+            Assert.AreEqual(0, result.Last());
         }
     }
 }

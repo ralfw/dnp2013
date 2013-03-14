@@ -142,5 +142,16 @@ namespace KataBowling.tests
                                             new Frame{ Roll1 = 2, Roll2 = 3} },
                                     true);
         }
+
+
+        [Test]
+        public void No_new_frame_even_if_strike_if_11th_frame()
+        {
+            var rolls = new[] { 10,10,10,10,10, 10,10,10,10,10, 10,10 };
+
+            var result = new Frames().Frame_rolls(rolls);
+
+            Assert.AreEqual(11, result.Count());
+        }
     }
 }

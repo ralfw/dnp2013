@@ -33,27 +33,35 @@ namespace KataBowling
         }
 
 
-        public void Throw(int pinsRolled)
+        public void Register_roll(int pinsRolled)
         {
-            var rolls = _frames.Register_roll(pinsRolled);
+            var rolls = _frames.Insert_roll(pinsRolled);
+            Result(Build_game(rolls));
+        }
 
-            var frames = _frames.Frame_rolls(rolls);
-            var scores = _scorer.Score_rolls(rolls.ToArray());
-
-            frames = _frames.Mixin_scores(frames, scores);
+        private Game Build_game(IEnumerable<int> rolls)
+        {
+            var frames = Build_frames(rolls);
 
             var game = new Game
-                {
-                    Frames = frames,
-                    Score = _scorer.Calc_total(frames)
-                };
+            {
+                Frames = frames,
+                Score = _scorer.Calc_total_score(frames)
+            };
 
             game.Finished = _frames.Check_for_end_of_game(game);
 
-            Result(game);
+            return game;
+        }
+
+        private IEnumerable<Frame> Build_frames(IEnumerable<int> rolls)
+        {
+            var frames = _frames.Frame_rolls(rolls);
+            var scores = _scorer.Calc_frame_scores(rolls.ToArray());
+            return _frames.Mixin_scores(frames, scores);
         }
 
 
         public event Action<Game> Result;
     }
-}
+    }

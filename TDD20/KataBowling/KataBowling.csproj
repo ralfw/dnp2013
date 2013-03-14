@@ -57,6 +57,7 @@
     <Compile Include="operations\Mappings.cs" />
     <Compile Include="operations\Scorer.cs" />
     <Compile Include="tests\test_Frames.cs" />
+    <Compile Include="tests\test_Integration.cs" />
     <Compile Include="tests\test_Mappings.cs" />
     <Compile Include="tests\test_Scorer.cs" />
     <Compile Include="tests\test_UI.cs" />

@@ -23,7 +23,7 @@ namespace KataBowling.operations
         }
 
 
-        public IEnumerable<int> Register_roll(int pins)
+        public IEnumerable<int> Insert_roll(int pins)
         {
             _rolls.Add(pins);
             return _rolls;
@@ -46,7 +46,7 @@ namespace KataBowling.operations
                 else
                 {
                     frame.Roll1 = roll;
-                    if (roll == 10)
+                    if (roll == 10 && frames.Count < 10)
                     {
                         frames.Add(frame);
                         frame = new Frame();
@@ -72,18 +72,30 @@ namespace KataBowling.operations
         {
             var frames = game.Frames.ToArray();
 
-            if (frames.Count() == 10 &&
-                frames[9].Roll2.HasValue &&
-                frames[9].Score < 10) return true;
+            return Check_for_pair_in_10th_frame(frames)  || 
+                    Check_for_single_roll_after_spare_in_10th_frame(frames) || 
+                    Check_for_2_more_rolls_after_strike_in_10th_frame(frames);
+        }
 
-            if (frames.Count() == 11 &&
-                frames[10].Roll1.HasValue) return true;
+        private static bool Check_for_pair_in_10th_frame(Frame[] frames)
+        {
+            return frames.Count() == 10 &&
+                    frames[9].Roll2.HasValue &&
+                    frames[9].Score < 10;
+        }
 
-            if (frames.Count() == 11 &&
-                frames[9].Roll1 == 10 &&
-                frames[10].Roll1.HasValue && frames[10].Roll2.HasValue) return true;
+        private static bool Check_for_single_roll_after_spare_in_10th_frame(Frame[] frames)
+        {
+            return frames.Count() == 11 &&
+                    frames[9].Roll1 != 10 &&
+                    frames[10].Roll1.HasValue;
+        }
 
-            return false;
+        private static bool Check_for_2_more_rolls_after_strike_in_10th_frame(Frame[] frames)
+        {
+            return frames.Count() == 11 &&
+                    frames[9].Roll1 == 10 &&
+                    frames[10].Roll1.HasValue && frames[10].Roll2.HasValue;
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "3",
             "4",
@@ -54,7 +54,7 @@
             this.columnHeader3,
             this.columnHeader4});
             this.lvFrames.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.lvFrames.Location = new System.Drawing.Point(14, 30);
             this.lvFrames.Name = "lvFrames";
             this.lvFrames.Size = new System.Drawing.Size(176, 232);
@@ -144,6 +144,7 @@
             // 
             // UI
             // 
+            this.AcceptButton = this.btnSubmit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(208, 327);

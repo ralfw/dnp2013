@@ -25,7 +25,7 @@ namespace KataBowling
             var integration = new Integration(frames, scorer);
 
             ui.On_Clear += integration.New_game;
-            ui.On_Pins += integration.Throw;
+            ui.On_Pins += integration.Register_roll;
             integration.Result += map.Map;
             map.Result += ui.Display;
 
