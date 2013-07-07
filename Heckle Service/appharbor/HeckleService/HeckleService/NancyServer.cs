@@ -11,7 +11,7 @@ namespace HeckleService
     {
         public NancyServer()
         {
-            Get["/"] = x => "heckle: " + Environment.GetEnvironmentVariable("heckle_pushover_apptoken");
+            Get["/"] = x => "heckle: " + Credentials.Get("heckle_pushover_apptoken");
 
         }
     }
