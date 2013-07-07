@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Nancy;
@@ -10,7 +11,8 @@ namespace HeckleService
     {
         public NancyServer()
         {
-            Get["/"] = x => "hello, world - " + DateTime.Now.ToString();
+            Get["/"] = x => "heckle: " + Environment.GetEnvironmentVariable("heckle_pushover_apptoken");
+
         }
     }
 }
