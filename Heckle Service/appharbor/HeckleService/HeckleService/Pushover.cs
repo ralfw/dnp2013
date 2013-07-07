@@ -21,13 +21,9 @@ namespace HeckleService
         }
 
 
-        public void Send(string title, string message, string url)
+        public void Send(string message)
         {
-            var payload = string.Format("token={0}&user={1}&title={2}&message={3}&url={4}",
-                                        _apptoken, _userkey,
-                                        HttpUtility.UrlEncode(title),
-                                        HttpUtility.UrlEncode(message),
-                                        HttpUtility.UrlEncode(url));
+            var payload = string.Format("token={0}&user={1}&message={2}", _apptoken, _userkey, HttpUtility.UrlEncode(message));
             var payloadBytes = Encoding.ASCII.GetBytes(payload);
 
             var wr = WebRequest.Create(PUSHOVER_REST_API_URL);

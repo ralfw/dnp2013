@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Heckle Service</title>
+</head>
+<body>
+    <h3>Zwischenrufen!</h3>
+    <form action="heckled" method="POST">
+        <table>
+            <tr>
+                <td>Nachricht:</td>
+                <td><textarea name="text"></textarea></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input name="name" type="text" value="@Model.Name"/></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input name="email" type="text" value="@Model.Email"/></td>
+            </tr>
+        </table>
+        <input type="submit"/>
+    </form>
+    @If.IstQuitting
+    <p/>
+    <hr/>
+    <h4>Zwischengerufen:</h4>
+    @Model.Zwischenruf
+    @EndIf
+</body>
+</html>
