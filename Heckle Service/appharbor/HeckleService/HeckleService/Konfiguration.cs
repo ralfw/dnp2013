@@ -5,9 +5,15 @@ using System.Linq;
 
 namespace HeckleService
 {
-    public static class Credentials
+    public static class Konfiguration
     {
-        public static string Get(string key)
+        public static Dictionary<string, string> Mehrere_laden(params string[] keys)
+        {
+            return keys.ToDictionary(key => key, Laden);
+        }
+        
+        
+        public static string Laden(string key)
         {
             /*
                 Idee für die Speicherung der Credentials im Environment aus:

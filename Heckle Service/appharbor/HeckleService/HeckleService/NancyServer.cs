@@ -10,59 +10,71 @@ using System.Web.Script;
 using System.Web.Script.Serialization;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.Responses.Negotiation;
 
 namespace HeckleService
 {
     public class NancyServer : NancyModule
     {
-        JavaScriptSerializer _json = new JavaScriptSerializer();
-
         public NancyServer()
         {
-            Get["/"] = x => {
-                dynamic model = new ExpandoObject();
-                model.Name = "";
-                model.Email = "";
-                model.IstQuitting = false;
-                return View["heckle.html", model];
-            };
-
-            Post["/heckled"] = x => {
-                dynamic model = new ExpandoObject();
-                model.IstQuitting = true;
-                model.Name = Request.Form.name;
-                model.Email = Request.Form.email;
-                model.Zwischenruf = Request.Form.text + ", " + Request.Form.name + " (" + Request.Form.email + ")";
-
-                var po = new Pushover(Credentials.Get("heckle_pushover_apptoken"), Credentials.Get("heckle_pushover_userkey"));
-                po.Send(model.Zwischenruf);
-
-                return View["heckle.html", model];
-            };
-
-            Post["/api/1/heckles"] = x => {
+            Post["/api/1/heckles"] = x =>
+            {
                 try
                 {
-                    using (var sr = new StreamReader(Request.Body))
-                    {
-                            var zwischenruf = sr.ReadToEnd();
-
-                            var po = new Pushover(Credentials.Get("heckle_pushover_apptoken"), Credentials.Get("heckle_pushover_userkey"));
-                            po.Send(zwischenruf);
-
-                            return HttpStatusCode.OK;
-                    }
+                    var nachricht = Nachricht_aus_Request_extrahieren(Request);
+                    Versenden(nachricht);
+                    return HttpStatusCode.OK;
                 }
                 catch (Exception ex)
                 {
-                    return new Response
-                    {
-                        StatusCode = HttpStatusCode.BadRequest,
-                        ContentType = "text/plain",
-                        Contents = stream => (new StreamWriter(stream) { AutoFlush = true }).Write("Zwischenruf konnte nicht abgesetzt werden!\n" + ex.ToString())
-                    };
+                    return this.AsError(ex);
                 }
             };
+
+
+            Get["/"] = x => Zwischenruf_Formular_bauen("");
+
+
+            Post["/"] = x => {
+                var nachricht = Nachricht_aus_Formular_extrahieren(Request);
+                Versenden(nachricht);
+                return Zwischenruf_Formular_bauen(nachricht);
+            };
+        }
+
+
+        private static void Versenden(string nachricht)
+        {
+            var credentials = Konfiguration.Mehrere_laden("heckle_pushover_apptoken", "heckle_pushover_userkey");
+            new Pushover(credentials["heckle_pushover_apptoken"], credentials["heckle_pushover_userkey"])
+                .Send(nachricht);
+        }
+
+
+        private Negotiator Zwischenruf_Formular_bauen(string nachricht)
+        {
+            dynamic viewModel = new ExpandoObject();
+            viewModel.IstQuitting = !string.IsNullOrEmpty(nachricht);
+            viewModel.Zwischenruf = nachricht;
+            viewModel.Name = viewModel.IstQuitting ? Request.Form.Name : "";
+            viewModel.Email = viewModel.IstQuitting ? Request.Form.Email : "";
+            return View["heckle.html", viewModel];
+        }
+
+
+        private string Nachricht_aus_Request_extrahieren(Request request)
+        {
+            using (var sr = new StreamReader(Request.Body))
+            {
+                return sr.ReadToEnd();
+            }
+        }
+
+        
+        private string Nachricht_aus_Formular_extrahieren(Request request)
+        {
+            return Request.Form.text + ", " + Request.Form.name + " (" + Request.Form.email + ")";
         }
     }
 }
