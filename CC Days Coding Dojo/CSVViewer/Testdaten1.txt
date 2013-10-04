@@ -1,0 +1,19 @@
+﻿Name;Straße;Ort
+Peter;Isestr. 5;Hamburg
+Paul;Gluckstr. 4;München
+Maria;Victoriaweg 77;Berlin
+Bernd;Maiglöckchenweg 4;Rostock
+Valentina;Am Hang 9;Köln
+Stefan;Weg 7;Bonn
+Peter2;Isestr. 5;Hamburg
+Paul2;Gluckstr. 4;München
+Maria2;Victoriaweg 77;Berlin
+Bernd2;Maiglöckchenweg 4;Rostock
+Valentina2;Am Hang 9;Köln
+Stefan2;Weg 7;Bonn
+Peter3;Isestr. 5;Hamburg
+Paul3;Gluckstr. 4;München
+Maria3;Victoriaweg 77;Berlin
+Bernd3;Maiglöckchenweg 4;Rostock
+Valentina3;Am Hang 9;Köln
+Stefan3;Weg 7;Bonn
