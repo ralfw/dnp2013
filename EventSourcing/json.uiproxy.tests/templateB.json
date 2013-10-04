@@ -1,0 +1,6 @@
+﻿{
+	"event": "B",
+	"payload": {
+		"einArray": [1, 2, 3]
+	}
+}

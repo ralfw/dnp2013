@@ -1,0 +1,7 @@
+﻿{
+	"event": "A",
+	"payload": {
+		"eineZahl": 42,
+		"eineZeichenkette": "hello, world!"
+	}
+}
