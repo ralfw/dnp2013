@@ -18,7 +18,7 @@ namespace json.uiproxy.tests
             Application.SetCompatibleTextRenderingDefault(false);
 
             var jp = new JsonPortal();
-            jp.JsonInput += jp.JsonOutput_anzeigen;
+            jp.Input += jp.Output_anzeigen;
 
             jp.Show();
         }

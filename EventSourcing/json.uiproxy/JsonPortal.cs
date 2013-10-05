@@ -19,9 +19,16 @@ namespace json.uiproxy
             tp.Templatenamen += _ui.Templates;
             _ui.Template_ausgewählt += tp.Template_laden;
             tp.Template += _ui.Template_anzeigen;
-            _ui.JsonInput = _ => this.JsonInput(_);
 
-            _jsonOutput_anzeigen = _ui.JsonOutput_anzeigen;
+            _ui.JsonInput = json => {
+                dynamic obj = json.FromJson();
+                this.Input(obj);
+            };
+
+            _output_anzeigen = obj => {
+                var json = obj.ToJson();
+                _ui.JsonOutput_anzeigen(json);
+            };
         }
 
 
@@ -32,12 +39,14 @@ namespace json.uiproxy
             _ui.ShowDialog();
         }
 
-        private readonly Action<string> _jsonOutput_anzeigen;
-        public void JsonOutput_anzeigen(string jsonOutput)
+
+        private readonly Action<object> _output_anzeigen;
+        public void Output_anzeigen(object output)
         {
-            _jsonOutput_anzeigen(jsonOutput);
+            _output_anzeigen(output);
         }
 
-        public Action<string> JsonInput;
+
+        public Action<dynamic> Input;
     }
 }

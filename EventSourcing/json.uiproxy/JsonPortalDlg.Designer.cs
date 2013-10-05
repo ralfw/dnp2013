@@ -32,6 +32,7 @@
             this.txtJsonInput = new System.Windows.Forms.TextBox();
             this.btnSenden = new System.Windows.Forms.Button();
             this.lvJsonIO = new System.Windows.Forms.ListView();
+            this.colJson = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cboJsonTemplates
@@ -76,15 +77,22 @@
             this.lvJsonIO.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvJsonIO.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colJson});
             this.lvJsonIO.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvJsonIO.Location = new System.Drawing.Point(12, 223);
             this.lvJsonIO.Name = "lvJsonIO";
             this.lvJsonIO.Size = new System.Drawing.Size(328, 321);
             this.lvJsonIO.TabIndex = 3;
             this.lvJsonIO.UseCompatibleStateImageBehavior = false;
-            this.lvJsonIO.View = System.Windows.Forms.View.List;
+            this.lvJsonIO.View = System.Windows.Forms.View.Details;
             // 
-            // JsonPortal
+            // colJson
+            // 
+            this.colJson.Text = "Json";
+            this.colJson.Width = 1440;
+            // 
+            // JsonPortalDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,7 +101,7 @@
             this.Controls.Add(this.btnSenden);
             this.Controls.Add(this.txtJsonInput);
             this.Controls.Add(this.cboJsonTemplates);
-            this.Name = "JsonPortal";
+            this.Name = "JsonPortalDlg";
             this.Text = "JsonPortal";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -106,5 +114,6 @@
         private System.Windows.Forms.TextBox txtJsonInput;
         private System.Windows.Forms.Button btnSenden;
         private System.Windows.Forms.ListView lvJsonIO;
+        private System.Windows.Forms.ColumnHeader colJson;
     }
 }
