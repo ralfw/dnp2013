@@ -64,7 +64,7 @@ namespace json.uiproxy
 
         // source: http://stackoverflow.com/questions/4580397/json-formatter-in-c
         private const string INDENT_STRING = "  ";
-        private static string PrettifyJson(string str)
+        public static string PrettifyJson(this string str)
         {
             var indent = 0;
             var quoted = false;

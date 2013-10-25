@@ -25,9 +25,14 @@ namespace json.uiproxy
                 this.Input(obj);
             };
 
-            _output_anzeigen = obj => {
+            _objekt_anzeigen = obj => {
                 var json = obj.ToJson();
                 _ui.JsonOutput_anzeigen(json);
+            };
+
+            _json_anzeigen = json => {
+                 var prettyJson = json.PrettifyJson();
+                 _ui.JsonOutput_anzeigen(prettyJson);
             };
         }
 
@@ -40,12 +45,18 @@ namespace json.uiproxy
         }
 
 
-        private readonly Action<object> _output_anzeigen;
-        public void Output_anzeigen(object output)
+        private readonly Action<object> _objekt_anzeigen;
+        public void Objekt_anzeigen(object output)
         {
-            _output_anzeigen(output);
+            _objekt_anzeigen(output);
         }
 
+
+        private readonly Action<string> _json_anzeigen;
+        public void Json_anzeigen(string json)
+        {
+            _json_anzeigen(json);
+        }
 
         public Action<dynamic> Input;
     }
