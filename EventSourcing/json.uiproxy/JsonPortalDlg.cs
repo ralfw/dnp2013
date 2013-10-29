@@ -51,15 +51,18 @@ namespace json.uiproxy
 
         private void JsonAnzeigen(string jsonOutput, string überschrift)
         {
-            using (var sr = new StringReader(jsonOutput))
-            {
-                var i = 0;
-                lvJsonIO.Items.Insert(i++, überschrift).BackColor = Color.LightGray;
+            var text = string.Format("----------------------\n{0}\n----------------------\n{1}\n\n", überschrift, jsonOutput);
+            txtJson.Text = text + txtJson.Text;
 
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                    lvJsonIO.Items.Insert(i++, line);
-            }
+            //using (var sr = new StringReader(jsonOutput))
+            //{
+            //    var i = 0;
+            //    lvJsonIO.Items.Insert(i++, überschrift).BackColor = Color.LightGray;
+
+            //    string line;
+            //    while ((line = sr.ReadLine()) != null)
+            //        lvJsonIO.Items.Insert(i++, line);
+            //}
         }
 
 
