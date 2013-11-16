@@ -1,0 +1,1 @@
+Spielbrett=leiterspielbrett2.jpgZeilen=8Spalten=8Leiter=1,30Leiter = 3 , 11Leiter=7,25Leiter=17,34Leiter=22,52Leiter=40,54Leiter=41,57Leiter=48,64Schlange=14,6 Schlange = 39 , 23Schlange=45,33Schlange=47,19Schlange=53,13Schlange=61,46

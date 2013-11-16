@@ -1,0 +1,16 @@
+Spielbrett=leiterspielbrett3.pngZeilen=10Spalten=10Leiter=3,45Leiter=6,26Leiter=9,11Leiter=22,41
+Leiter=28,65
+Leiter=31,49
+Leiter=42,62
+Leiter=70,90
+Leiter=74,95
+Leiter=89,91
+Leiter=82,98Schlange=29,5
+Schlange=25,15
+Schlange=38,19
+Schlange=54,35
+Schlange=58,56
+Schlange=73,52
+Schlange=77,61
+Schlange=88,85
+Schlange=99,75
