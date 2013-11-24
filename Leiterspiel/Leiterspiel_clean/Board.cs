@@ -31,17 +31,22 @@ namespace Leiterspiel
                 string line;
                 while ((line = f.ReadLine()) != null)
                 {
-                    if (line.IndexOf("=") >= 0)
-                    {
-                        string[] parts = line.Split('=');
-                        if (parts[0].Trim() == "Spalten") Spalten = int.Parse(parts[1].Trim());
-                        if (parts[0].Trim() == "Zeilen") Zeilen = int.Parse(parts[1].Trim());
-                        if (parts[0].Trim() == "Leiter" || parts[0].Trim() == "Schlange") 
-                        {
-                            string[] fields = parts[1].Split(',');
-                            Moves.Add(int.Parse(fields[0].Trim()), int.Parse(fields[1].Trim()));
-                        }
-                    }
+                    Load_line(line);
+                }
+            }
+        }
+
+        private void Load_line(string line)
+        {
+            if (line.IndexOf("=") >= 0)
+            {
+                string[] parts = line.Split('=');
+                if (parts[0].Trim() == "Spalten") Spalten = int.Parse(parts[1].Trim());
+                if (parts[0].Trim() == "Zeilen") Zeilen = int.Parse(parts[1].Trim());
+                if (parts[0].Trim() == "Leiter" || parts[0].Trim() == "Schlange")
+                {
+                    string[] fields = parts[1].Split(',');
+                    Moves.Add(int.Parse(fields[0].Trim()), int.Parse(fields[1].Trim()));
                 }
             }
         }
