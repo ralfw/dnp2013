@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Leiterspiel
 {
@@ -26,14 +27,10 @@ namespace Leiterspiel
 
         public void Load(string Filename)
         {
-            using (TextReader f = File.OpenText(Filename))
-            {
-                string line;
-                while ((line = f.ReadLine()) != null)
-                {
-                    Load_line(line);
-                }
-            }
+            var sr = new StringReader(File.ReadAllText(Filename));
+            string line;
+            while((line = sr.ReadLine()) != null)
+                Load_line(line);
         }
 
         private void Load_line(string line)
