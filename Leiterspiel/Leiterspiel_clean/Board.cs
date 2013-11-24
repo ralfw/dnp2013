@@ -3,11 +3,11 @@ using System.IO;
 
 namespace Leiterspiel
 {
-    class Board
+    internal class Board
     {
         public int Zeilen { get; set; }
         public int Spalten { get; set; }
-        Dictionary<int, int> Moves = new Dictionary<int, int>();
+        internal Dictionary<int, int> Moves = new Dictionary<int, int>();
 
         public Board(string filename)
         {
