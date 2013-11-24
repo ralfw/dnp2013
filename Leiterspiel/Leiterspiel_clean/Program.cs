@@ -9,6 +9,7 @@ namespace Leiterspiel
     {
       Board board = new Board(args[0]);
       Game game = new Game(board);
+      game.Play();
     }
   }
 }

@@ -13,6 +13,10 @@ namespace Leiterspiel
         public Game(Board board)
         {
             this.board = board;
+        }
+
+        public void Play()
+        {
             Initialize();
             NextPlayer();
             while (!PlayStep())
