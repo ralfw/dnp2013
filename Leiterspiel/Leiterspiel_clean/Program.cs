@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Leiterspiel
@@ -7,9 +8,10 @@ namespace Leiterspiel
   {
     static void Main(string[] args)
     {
-      Board board = new Board(args[0]);
-      Game game = new Game(board);
-      game.Play();
+        var boardDefinition = File.ReadAllText(args[0]);
+        var board = Board.Parse(boardDefinition);
+        var game = new Game(board);
+        game.Play();
     }
   }
 }

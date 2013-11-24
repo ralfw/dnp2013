@@ -6,14 +6,18 @@ namespace Leiterspiel
 {
     internal class Board
     {
+        public static Board Parse(string text)
+        {
+            var board = new Board();
+            board.Deserialize_from_text(text);
+            return board;
+        }
+
+
         public int Zeilen { get; set; }
         public int Spalten { get; set; }
         internal Dictionary<int, int> Moves = new Dictionary<int, int>();
 
-        public Board(string filename)
-        {
-            Load(filename);
-        }
 
         public int CalculateNewPosition(int oldposition)
         {
@@ -25,16 +29,18 @@ namespace Leiterspiel
             else return oldposition;
         }
 
-        public void Load(string Filename)
+
+        private void Deserialize_from_text(string text)
         {
-            var sr = new StringReader(File.ReadAllText(Filename));
+            var sr = new StringReader(text);
             string line;
             while((line = sr.ReadLine()) != null)
-                Load_line(line);
+                Deserialize_from_line(line);
         }
 
-        private void Load_line(string line)
+        private void Deserialize_from_line(string line)
         {
+
             if (line.IndexOf("=") >= 0)
             {
                 string[] parts = line.Split('=');

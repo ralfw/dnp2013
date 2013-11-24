@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,10 @@ namespace Leiterspiel.tests
         [Test]
         public void Deserialisation()
         {
-            var sut = new Board("leiterspielbrett1.txt");
+            var text = File.ReadAllText("leiterspielbrett1.txt");
+
+            var sut = Board.Parse(text);
+            
             Assert.AreEqual(5, sut.Zeilen);
             Assert.AreEqual(6, sut.Spalten);
             Assert.AreEqual(8, sut.Moves.Count);
