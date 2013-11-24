@@ -34,8 +34,14 @@ namespace Leiterspiel
             Console.WriteLine("Neues Leiterspiel. Geben Sie zuerst die Anzahl an Spielern ein. [2 .. 4]");
 
             int NumberOfPlayers = int.Parse(Console.ReadLine());
+            Set_number_of_players(NumberOfPlayers);
+        }
+
+        private void Set_number_of_players(int NumberOfPlayers)
+        {
             for (int i = 0; i < NumberOfPlayers; i++) Players.Add(new Player());
         }
+
 
         private void Finalize()
         {
