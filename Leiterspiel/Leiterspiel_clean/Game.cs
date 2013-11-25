@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace Leiterspiel
 {
+    /*
+     * Interaktionen
+     *      - Start. in: dateiname, out: zeilenzahl, spaltenzahl, zielfeldindex
+     *      - Anzahl spieler setzen. in: n, out: -
+     *      - Zug durchführen. in: augenzahl, out: spieler, position, spielstand
+     */
     class Game
     {
         int CurrentPlayerNumber = -1;
