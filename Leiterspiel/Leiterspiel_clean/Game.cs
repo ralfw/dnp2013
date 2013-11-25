@@ -12,16 +12,28 @@ namespace Leiterspiel
 
     interface IUI
     {
-        event Action Started;
-        event Action<int> Number_of_players;
-        event Action<int> Rolled_the_dice;
+        event Action Started; //
+        event Action<int> Number_of_players; //
+        event Action<int> Rolled_the_dice; //
 
-        void Show();
-        void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex);
-        void Let_the_game_begin();
-        void Update_player_position(int player, int position);
-        void Game_over(int winning_player);
+        void Show(); //
+        void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex); //
+        void Update_player_position(int player, int position); //
+        void Game_over(int winning_player); //
     }
+
+    interface IGame
+    {
+        event Action<int, int, int> Initialized; //
+        event Action<int, int> Player_moved; //
+        event Action<int> Game_over; //
+
+        void Initialize(Board board); //
+        void Set_players(int number_of_players); //
+        void Move_player(int number); //
+
+    }
+
 
     class Game
     {
