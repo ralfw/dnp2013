@@ -21,12 +21,10 @@ namespace Leiterspiel
 
         public int CalculateNewPosition(int oldposition)
         {
-            int j = 0;
+            var j = 0;
             if (Moves.TryGetValue(oldposition, out j))
-            {
                 return j;
-            }
-            else return oldposition;
+            return oldposition;
         }
 
 

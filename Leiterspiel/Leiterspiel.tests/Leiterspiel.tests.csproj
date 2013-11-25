@@ -45,12 +45,16 @@
   <ItemGroup>
     <Compile Include="test_Board.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test_Game_Akzeptanz.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="leiterspielbrett1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="leiterspielbrett2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
