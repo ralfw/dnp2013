@@ -22,20 +22,7 @@ namespace Leiterspiel
         void Game_over(int winning_player); //
     }
 
-    interface IGame
-    {
-        event Action<int, int, int> Initialized; //
-        event Action<int, int> Player_moved; //
-        event Action<int> Game_over; //
-
-        void Initialize(Board board); //
-        void Set_players(int number_of_players); //
-        void Move_player(int number); //
-
-    }
-
-
-    class Game
+    partial class Game : IUI
     {
         int CurrentPlayerNumber = -1;
         Player CurrentPlayer;
@@ -122,6 +109,31 @@ namespace Leiterspiel
         private bool HasWon()
         {
             return CurrentPlayer.Position >= board.Zeilen * board.Spalten;
+        }
+        #endregion
+
+        #region IUI
+        public event Action Started;
+        public event Action<int> Number_of_players;
+        public event Action<int> Rolled_the_dice;
+        public void Show()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update_player_position(int player, int position)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Game_over(int winning_player)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

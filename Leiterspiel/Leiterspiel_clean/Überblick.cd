@@ -3,7 +3,7 @@
   <Class Name="Leiterspiel.Board" Collapsed="true">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAEAAIBAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAIAAAAAAACAAAAAAAAAAAAAAAkAAIBAAAAAAAAA=</HashCode>
       <FileName>Board.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,8 +17,8 @@
   <Class Name="Leiterspiel.Game">
     <Position X="1.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAQAAEAAACAAAABAggAAAIAACgAAAAAA=</HashCode>
-      <FileName>Game.cs</FileName>
+      <HashCode>AAgAFBAAkAIEQQAAEAAACAAAABIlIAAAoAACggAAAAA=</HashCode>
+      <FileName>IUI.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="CurrentPlayer" />
@@ -27,6 +27,7 @@
     <ShowAsCollectionAssociation>
       <Field Name="Players" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
