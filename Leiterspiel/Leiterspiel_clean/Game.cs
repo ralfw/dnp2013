@@ -47,7 +47,14 @@ namespace Leiterspiel
 
         public void Move_player(int number)
         {
-            throw new NotImplementedException();
+            CalculateStep(number);
+            if (HasWon()) 
+                Game_over_event(_current_player_index);
+            else
+            {
+                NextPlayer();
+                Player_moved(_current_player_index, _players[_current_player_index].Position);
+            }
         }
 
 
@@ -62,14 +69,6 @@ namespace Leiterspiel
         }
         #endregion
 
-
-
-        private bool PlayStep()
-        {
-            var draw = Roll_dice();
-            CalculateStep(draw);
-            return HasWon();
-        }
 
 
         private void CalculateStep(int draw)

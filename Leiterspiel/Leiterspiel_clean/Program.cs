@@ -20,7 +20,9 @@ namespace Leiterspiel
         game.Initialized += ui.Board_prepared;
 
         ui.Number_of_players_entered += game.Set_players;
+        ui.Rolled_the_dice += game.Move_player;
         game.Player_moved += ui.Update_player_position;
+        game.Game_over_event += ui.Game_over;
 
         ui.Show();
     }

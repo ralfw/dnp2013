@@ -24,36 +24,15 @@ namespace Leiterspiel
 
     partial class Game : UI
     {
-        #region UI
-        private int Roll_dice()
-        {
-            int draw = 0;
-            string drawstring = "";
-            do
-            {
-                Console.Write(string.Format("Spieler {0}: Position {1}. Gewürfelte Augenzahl: ", _player, _position));
-                drawstring = Console.ReadKey().KeyChar.ToString();
-            } while (!int.TryParse(drawstring, out draw) || (draw < 1 || draw > 6));
-            Console.WriteLine();
-            return draw;
-        }
+        private int _number_of_rows, _number_of_cols, _goalIndex;
+        private bool _game_over = false;
+
 
         private void Declare_winner()
         {
-            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", _current_player_index));
+            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", _player));
             Console.ReadLine();
         }
-        #endregion
-
-        #region Logic
-
-
-
-        #endregion
-
-        #region IUI
-
-        private int _number_of_rows, _number_of_cols, _goalIndex;
 
 
         public event Action Started;
@@ -69,11 +48,8 @@ namespace Leiterspiel
         private void Message_loop()
         {
             Ask_for_number_of_players();
-            NextPlayer();
-            while (!PlayStep())
-            {
-                NextPlayer();
-            }
+            while (!_game_over)
+                Roll_dice();
             Declare_winner();
         }
 
@@ -86,6 +62,19 @@ namespace Leiterspiel
             var number_of_players = Console.ReadLine();
 
             Number_of_players_entered(int.Parse(number_of_players));
+        }
+
+        private void Roll_dice()
+        {
+            var draw = 0;
+            var drawstring = "";
+            do
+            {
+                Console.Write(string.Format("Spieler {0}: Position {1}. Gewürfelte Augenzahl: ", _player, _position));
+                drawstring = Console.ReadKey().KeyChar.ToString();
+            } while (!int.TryParse(drawstring, out draw) || (draw < 1 || draw > 6));
+            Console.WriteLine();
+            this.Rolled_the_dice(draw);
         }
 
 
@@ -108,8 +97,7 @@ namespace Leiterspiel
 
         public void Game_over(int winning_player)
         {
-            throw new NotImplementedException();
+            _game_over = true;
         }
-        #endregion
     }
 }
