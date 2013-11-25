@@ -27,13 +27,7 @@ namespace Leiterspiel
         int CurrentPlayerNumber = -1;
         Player CurrentPlayer;
         List<Player> Players = new List<Player>();
-        Board board;
 
-
-        public Game(Board board)
-        {
-            this.board = board;
-        }
 
         public void Play()
         {
@@ -50,7 +44,7 @@ namespace Leiterspiel
         private void Ask_for_number_of_players()
         {
             Console.WriteLine(string.Format("Spielbrett mit {0} Zeilen und {1} Spalten. Sieger ist, wer zuerst Feld {2} erreicht hat",
-                                            board.Zeilen, board.Spalten, board.Zeilen * board.Spalten));
+                                            _number_of_rows, _number_of_cols, _goalIndex));
 
             Console.Write("Neues Leiterspiel. Geben Sie zuerst die Anzahl an Spielern ein. [2 .. 4]: ");
 
@@ -103,27 +97,34 @@ namespace Leiterspiel
 
         private void CalculateStep(int draw)
         {
-            CurrentPlayer.Position = board.CalculateNewPosition(CurrentPlayer.Position + draw);
+            CurrentPlayer.Position = _board.CalculateNewPosition(CurrentPlayer.Position + draw);
         }
 
         private bool HasWon()
         {
-            return CurrentPlayer.Position >= board.Zeilen * board.Spalten;
+            return CurrentPlayer.Position >= _board.Zeilen * _board.Spalten;
         }
         #endregion
 
         #region IUI
+
+        private int _number_of_rows, _number_of_cols, _goalIndex;
+
+
         public event Action Started;
         public event Action<int> Number_of_players;
         public event Action<int> Rolled_the_dice;
+
         public void Show()
         {
-            throw new NotImplementedException();
+            Started();
         }
 
         public void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex)
         {
-            throw new NotImplementedException();
+            _number_of_rows = number_of_rows;
+            _number_of_cols = number_of_cols;
+            _goalIndex = goalIndex;
         }
 
         public void Update_player_position(int player, int position)

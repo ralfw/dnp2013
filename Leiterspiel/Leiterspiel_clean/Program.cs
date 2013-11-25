@@ -8,10 +8,20 @@ namespace Leiterspiel
   {
     static void Main(string[] args)
     {
-        var boardDefinition = File.ReadAllText(args[0]);
-        var board = Board.Parse(boardDefinition);
-        var game = new Game(board);
-        game.Play();
+
+        var game = new Game();
+        var ui = game;
+
+        ui.Started += () =>
+            {
+                var boardDefinition = File.ReadAllText(args[0]);
+                var board = Board.Parse(boardDefinition);
+                game.Initialize(board);
+            };
+        game.Initialized += ui.Board_prepared;
+
+        ui.Show();
+        ui.Play();
     }
   }
 }

@@ -10,7 +10,7 @@ namespace Leiterspiel
     {
         event Action<int, int, int> Initialized; //
         event Action<int, int> Player_moved; //
-        event Action<int> Game_over; //
+        event Action<int> Game_over_event; //
 
         void Initialize(Board board); //
         void Set_players(int number_of_players); //
@@ -20,13 +20,17 @@ namespace Leiterspiel
 
     partial class Game : IGame
     {
+        Board _board;
+
         #region IGame
         public event Action<int, int, int> Initialized;
         public event Action<int, int> Player_moved;
-        public event Action<int> Game_over;
+        public event Action<int> Game_over_event;
+
         public void Initialize(Board board)
         {
-            throw new NotImplementedException();
+            _board = board;
+            Initialized(_board.Zeilen, _board.Spalten, _board.Zeilen*_board.Spalten);
         }
 
         public void Set_players(int number_of_players)
