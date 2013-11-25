@@ -17,37 +17,55 @@ namespace Leiterspiel
 
         public void Play()
         {
-            Initialize();
+            Ask_for_number_of_players();
             NextPlayer();
             while (!PlayStep())
             {
                 NextPlayer();
             }
-            Finalize();
+            Declare_winner();
         }
 
-        private void Initialize()
+        #region UI
+        private void Ask_for_number_of_players()
         {
             Console.WriteLine(string.Format("Spielbrett mit {0} Zeilen und {1} Spalten. Sieger ist, wer zuerst Feld {2} erreicht hat",
                                             board.Zeilen, board.Spalten, board.Zeilen * board.Spalten));
 
-            Console.WriteLine("Neues Leiterspiel. Geben Sie zuerst die Anzahl an Spielern ein. [2 .. 4]");
+            Console.Write("Neues Leiterspiel. Geben Sie zuerst die Anzahl an Spielern ein. [2 .. 4]: ");
 
-            int NumberOfPlayers = int.Parse(Console.ReadLine());
+            var NumberOfPlayers = int.Parse(Console.ReadLine());
             Set_number_of_players(NumberOfPlayers);
         }
 
+        private int Roll_dice()
+        {
+            int draw = 0;
+            string drawstring = "";
+            do
+            {
+                Console.Write(string.Format("Spieler {0}: Position {1}. Gewürfelte Augenzahl: ", 
+                                            CurrentPlayerNumber,
+                                            CurrentPlayer.Position));
+                drawstring = Console.ReadKey().KeyChar.ToString();
+            } while (!int.TryParse(drawstring, out draw) || (draw < 1 || draw > 6));
+            Console.WriteLine();
+            return draw;
+        }
+
+        private void Declare_winner()
+        {
+            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", CurrentPlayerNumber));
+            Console.ReadLine();
+        }
+        #endregion
+
+        #region Logic
         private void Set_number_of_players(int NumberOfPlayers)
         {
             for (int i = 0; i < NumberOfPlayers; i++) Players.Add(new Player());
         }
 
-
-        private void Finalize()
-        {
-            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", CurrentPlayerNumber));
-            Console.ReadLine();
-        }
 
         public void NextPlayer()
         {
@@ -57,19 +75,11 @@ namespace Leiterspiel
 
         private bool PlayStep()
         {
-            int draw = 0;
-            string drawstring = "";
-            do
-            {
-                Console.WriteLine(string.Format("Spieler {0}: Position {1}. Gewürfelte Augenzahl: ", CurrentPlayerNumber, CurrentPlayer.Position));
-                drawstring = Console.ReadKey().KeyChar.ToString();
-        
-            } while (!int.TryParse(drawstring, out draw) || (draw < 1 || draw > 6));
-     
+            var draw = Roll_dice();
             CalculateStep(draw);
-            Console.WriteLine();
             return HasWon();
         }
+
 
         private void CalculateStep(int draw)
         {
@@ -80,5 +90,6 @@ namespace Leiterspiel
         {
             return CurrentPlayer.Position >= board.Zeilen * board.Spalten;
         }
+        #endregion
     }
 }
