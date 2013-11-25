@@ -28,13 +28,6 @@ namespace Leiterspiel
         private bool _game_over = false;
 
 
-        private void Declare_winner()
-        {
-            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", _player));
-            Console.ReadLine();
-        }
-
-
         public event Action Started;
         public event Action<int> Number_of_players_entered;
         public event Action<int> Rolled_the_dice;
@@ -50,7 +43,6 @@ namespace Leiterspiel
             Ask_for_number_of_players();
             while (!_game_over)
                 Roll_dice();
-            Declare_winner();
         }
 
         private void Ask_for_number_of_players()
@@ -98,6 +90,8 @@ namespace Leiterspiel
         public void Game_over(int winning_player)
         {
             _game_over = true;
+            Console.WriteLine(string.Format("Spieler {0} hat gewonnen!!!! Gratulation. ", _player));
+            Console.ReadLine();
         }
     }
 }
