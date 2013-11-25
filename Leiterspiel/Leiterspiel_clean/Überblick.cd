@@ -17,15 +17,14 @@
   <Class Name="Leiterspiel.Game">
     <Position X="1.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAgAFBAAkIIEUQAAEAAADAQAABIlIAAAAAACggAAAAA=</HashCode>
+      <HashCode>AAhAEBAAgIIEcQAAEAAADQQAABIlIAAAAAACggAAAAA=</HashCode>
       <FileName>UI.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="CurrentPlayer" />
       <Field Name="_board" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Field Name="Players" />
+      <Field Name="_players" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>

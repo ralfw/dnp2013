@@ -19,6 +19,9 @@ namespace Leiterspiel
         };
         game.Initialized += ui.Board_prepared;
 
+        ui.Number_of_players_entered += game.Set_players;
+        game.Player_moved += ui.Update_player_position;
+
         ui.Show();
     }
   }
