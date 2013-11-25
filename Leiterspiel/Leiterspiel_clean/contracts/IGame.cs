@@ -1,6 +1,7 @@
 ﻿using System;
+using Leiterspiel.domain;
 
-namespace Leiterspiel
+namespace Leiterspiel.contracts
 {
     interface IGame
     {

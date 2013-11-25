@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Leiterspiel.domain;
 using NUnit.Framework;
 
 namespace Leiterspiel.tests

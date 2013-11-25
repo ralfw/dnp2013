@@ -47,7 +47,6 @@
     <Compile Include="contracts\IGame.cs" />
     <Compile Include="contracts\IUI.cs" />
     <Compile Include="domain\Game.cs" />
-    <Compile Include="domain\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI.cs" />

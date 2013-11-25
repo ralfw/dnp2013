@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace Leiterspiel
+namespace Leiterspiel.contracts
 {
     /*
      * Interaktionen
