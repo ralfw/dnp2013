@@ -10,7 +10,7 @@ namespace Leiterspiel
      *      - Zug durchführen. in: augenzahl, out: spieler, position, spielstand
      */
 
-    interface IUI
+    interface UI
     {
         event Action Started; //
         event Action<int> Number_of_players; //
@@ -22,23 +22,12 @@ namespace Leiterspiel
         void Game_over(int winning_player); //
     }
 
-    partial class Game : IUI
+    partial class Game : UI
     {
         int CurrentPlayerNumber = -1;
         Player CurrentPlayer;
         List<Player> Players = new List<Player>();
 
-
-        public void Play()
-        {
-            Ask_for_number_of_players();
-            NextPlayer();
-            while (!PlayStep())
-            {
-                NextPlayer();
-            }
-            Declare_winner();
-        }
 
         #region UI
         private void Ask_for_number_of_players()
@@ -118,7 +107,20 @@ namespace Leiterspiel
         public void Show()
         {
             Started();
+            Message_loop();
         }
+
+        private void Message_loop()
+        {
+            Ask_for_number_of_players();
+            NextPlayer();
+            while (!PlayStep())
+            {
+                NextPlayer();
+            }
+            Declare_winner();
+        }
+
 
         public void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex)
         {

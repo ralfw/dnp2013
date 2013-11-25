@@ -17,8 +17,8 @@
   <Class Name="Leiterspiel.Game">
     <Position X="1.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAgAFBAAkIIEQQAAEAAACAQAABIlIAAAgAACggAAAAA=</HashCode>
-      <FileName>IUI.cs</FileName>
+      <HashCode>AAgAFBAAkIIEUQAAEAAADAQAABIlIAAAAAACggAAAAA=</HashCode>
+      <FileName>UI.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="CurrentPlayer" />
