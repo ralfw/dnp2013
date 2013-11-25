@@ -1,7 +1,7 @@
 ﻿using System;
 using Leiterspiel.contracts;
 
-namespace Leiterspiel
+namespace Leiterspiel.portals
 {
     class UI : IUI
     {

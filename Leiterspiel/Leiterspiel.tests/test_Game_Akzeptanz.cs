@@ -27,7 +27,6 @@ namespace Leiterspiel.tests
             Spieler 0: Position 63. Gewürfelte Augenzahl: 5
             Spieler 0 hat gewonnen!!!! Gratulation.
         */
-
         [Test]
         public void Game1()
         {

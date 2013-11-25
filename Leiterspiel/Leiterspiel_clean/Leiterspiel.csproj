@@ -49,7 +49,7 @@
     <Compile Include="domain\Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI.cs" />
+    <Compile Include="portals\UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="leiterspielbrett1.txt">
