@@ -59,7 +59,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Leiterspiel_clean\Leiterspiel.csproj">
+    <ProjectReference Include="..\Leiterspiel.csproj">
       <Project>{0215b4cc-4306-4abe-a60d-2ae6b8368f9c}</Project>
       <Name>Leiterspiel</Name>
     </ProjectReference>

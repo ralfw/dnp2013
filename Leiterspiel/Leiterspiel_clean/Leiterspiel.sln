@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leiterspiel", "Leiterspiel.csproj", "{0215B4CC-4306-4ABE-A60D-2AE6B8368F9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leiterspiel.tests", "..\Leiterspiel.tests\Leiterspiel.tests.csproj", "{ED049CE2-1470-41A4-95C8-22AD19BC06DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leiterspiel.tests", "Leiterspiel.tests\Leiterspiel.tests.csproj", "{ED049CE2-1470-41A4-95C8-22AD19BC06DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
