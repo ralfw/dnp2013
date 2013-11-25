@@ -10,7 +10,7 @@ namespace Leiterspiel
     {
 
         var game = new Game();
-        var ui = game;
+        var ui = new UI();
 
         ui.Started += () => {
             var boardDefinition = File.ReadAllText(args[0]);
@@ -22,7 +22,7 @@ namespace Leiterspiel
         ui.Number_of_players_entered += game.Set_players;
         ui.Rolled_the_dice += game.Move_player;
         game.Player_moved += ui.Update_player_position;
-        game.Game_over_event += ui.Game_over;
+        game.Game_over += ui.Game_over;
 
         ui.Show();
     }

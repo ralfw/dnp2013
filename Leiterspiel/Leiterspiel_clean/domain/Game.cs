@@ -5,20 +5,7 @@ using System.Text;
 
 namespace Leiterspiel
 {
-
-    interface IGame
-    {
-        event Action<int, int, int> Initialized; //
-        event Action<int, int> Player_moved; //
-        event Action<int> Game_over_event; //
-
-        void Initialize(Board board); //
-        void Set_players(int number_of_players); //
-        void Move_player(int number); //
-
-    }
-
-    partial class Game : IGame
+    class Game : IGame
     {
         Board _board;
 
@@ -26,10 +13,10 @@ namespace Leiterspiel
         readonly List<Player> _players = new List<Player>();
 
 
-        #region IGame
         public event Action<int, int, int> Initialized;
         public event Action<int, int> Player_moved;
-        public event Action<int> Game_over_event;
+        public event Action<int> Game_over;
+
 
         public void Initialize(Board board)
         {
@@ -49,7 +36,7 @@ namespace Leiterspiel
         {
             CalculateStep(number);
             if (HasWon()) 
-                Game_over_event(_current_player_index);
+                Game_over(_current_player_index);
             else
             {
                 NextPlayer();
@@ -67,9 +54,6 @@ namespace Leiterspiel
         {
             _current_player_index = (_current_player_index + 1) % _players.Count;
         }
-        #endregion
-
-
 
         private void CalculateStep(int draw)
         {

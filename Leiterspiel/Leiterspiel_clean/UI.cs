@@ -1,36 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Leiterspiel
 {
-    /*
-     * Interaktionen
-     *      - Start. in: dateiname, out: zeilenzahl, spaltenzahl, zielfeldindex
-     *      - Anzahl spieler setzen. in: n, out: -
-     *      - Zug durchführen. in: augenzahl, out: spieler, position, spielstand
-     */
-
-    interface UI
-    {
-        event Action Started; //
-        event Action<int> Number_of_players_entered; //
-        event Action<int> Rolled_the_dice; //
-
-        void Show(); //
-        void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex); //
-        void Update_player_position(int player, int position); //
-        void Game_over(int winning_player); //
-    }
-
-    partial class Game : UI
+    class UI : IUI
     {
         private int _number_of_rows, _number_of_cols, _goalIndex;
+        private int _player;
+        private int _position;
         private bool _game_over = false;
 
 
         public event Action Started;
         public event Action<int> Number_of_players_entered;
         public event Action<int> Rolled_the_dice;
+
 
         public void Show()
         {
@@ -70,16 +53,13 @@ namespace Leiterspiel
         }
 
 
+
         public void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex)
         {
             _number_of_rows = number_of_rows;
             _number_of_cols = number_of_cols;
             _goalIndex = goalIndex;
         }
-
-
-        private int _player;
-        private int _position;
 
         public void Update_player_position(int player, int position)
         {

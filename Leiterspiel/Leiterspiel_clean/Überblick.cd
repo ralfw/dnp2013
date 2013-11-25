@@ -4,28 +4,22 @@
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAIAAAAAAACAAAAAAAAAAAAAAAkAAIBAAAAAAAAA=</HashCode>
-      <FileName>Board.cs</FileName>
+      <FileName>domain\Board.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Leiterspiel.Player" Collapsed="true">
     <Position X="6" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Player.cs</FileName>
+      <FileName>domain\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Leiterspiel.Game">
+  <Class Name="Leiterspiel.UI">
     <Position X="1.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAhAEBAAgIIEcQAAEAAADQQAABIlIAAAAAACggAAAAA=</HashCode>
+      <HashCode>AAhAAAAAgIAAAAAAAAAADAYAAAIlIAAAAAAAggAAAAA=</HashCode>
       <FileName>UI.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_board" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Field Name="_players" />
-    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
