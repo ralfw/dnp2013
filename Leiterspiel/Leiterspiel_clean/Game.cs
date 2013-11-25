@@ -9,12 +9,27 @@ namespace Leiterspiel
      *      - Anzahl spieler setzen. in: n, out: -
      *      - Zug durchführen. in: augenzahl, out: spieler, position, spielstand
      */
+
+    interface IUI
+    {
+        event Action Started;
+        event Action<int> Number_of_players;
+        event Action<int> Rolled_the_dice;
+
+        void Show();
+        void Board_prepared(int number_of_rows, int number_of_cols, int goalIndex);
+        void Let_the_game_begin();
+        void Update_player_position(int player, int position);
+        void Game_over(int winning_player);
+    }
+
     class Game
     {
         int CurrentPlayerNumber = -1;
         Player CurrentPlayer;
         List<Player> Players = new List<Player>();
         Board board;
+
 
         public Game(Board board)
         {
